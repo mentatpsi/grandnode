@@ -44,7 +44,13 @@ namespace Grand.Web.ViewComponents
                     return model;
                 }
             }
-            model.FaviconUrl = _webHelper.GetStoreLocation() + faviconFileName;
+            string faviConUrl = _webHelper.GetStoreLocation() + faviconFileName;
+            if (!faviConUrl.Contains("https")) {
+                faviConUrl = faviConUrl.Replace("http","https");
+            }
+            //model.FaviconUrl = _webHelper.GetStoreLocation() + faviconFileName;
+            model.FaviconUrl = faviConUrl;
+
             return model;
         }
 
